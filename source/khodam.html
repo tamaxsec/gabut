@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Khodam</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
+        body {
+            font-family: 'Creepster', cursive;
+            background-color: #000;
+            color: #ff1c1c;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://images.unsplash.com/photo-1603570418340-5f9b0228e2b6');
+            background-size: cover;
+            background-blend-mode: multiply;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .sidebar {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff1c1c;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+            text-shadow: 2px 2px 3px #000;
+        }
+
+        .sidebar-content {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 10px;
+            background-color: #000;
+            border: 2px solid #ff1c1c;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+            text-align: right;
+        }
+
+        .sidebar-content a {
+            display: block;
+            color: #ff1c1c;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar-content a:hover {
+            color: #b30000;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+            text-align: center;
+            max-width: 300px;
+            width: 100%;
+            border: 2px solid #ff1c1c;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 36px;
+            color: #ff1c1c;
+            text-shadow: 2px 2px 5px #000;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 2px solid #ff1c1c;
+            font-size: 18px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ff1c1c;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: #ff1c1c;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-shadow: 2px 2px 3px #000;
+        }
+
+        button:hover {
+            background-color: #b30000;
+            transform: scale(1.05);
+        }
+
+        .alert {
+            display: none;
+            margin-top: 10px;
+            color: yellow;
+            font-size: 14px;
+        }
+
+        .result {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid #ff1c1c;
+        }
+
+        .result h2 {
+            color: #ff1c1c;
+            margin-bottom: 10px;
+        }
+
+        .result p {
+            font-size: 24px;
+            color: #ff1c1c;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px #000;
+        }
+
+        .loader {
+            display: none;
+            margin-top: 20px;
+            color: #ff1c1c;
+        }
+
+        .blood-drip {
+            position: absolute;
+            width: 5px;
+            height: 50px;
+            background-color: #ff1c1c;
+            border-radius: 2px;
+            animation: drip 2s infinite;
+            top: -50px;
+        }
+
+        @keyframes drip {
+            0% {top: -50px; opacity: 1;}
+            100% {top: 100%; opacity: 0;}
+        }
+
+        .blood-drip-1 { left: 20%; animation-delay: 0.5s; }
+        .blood-drip-2 { left: 40%; animation-delay: 1s; }
+        .blood-drip-3 { left: 60%; animation-delay: 1.5s; }
+        .blood-drip-4 { left: 80%; animation-delay: 2s; }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            text-align: center;
+            color: #ff1c1c;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="blood-drip blood-drip-1"></div>
+<div class="blood-drip blood-drip-2"></div>
+<div class="blood-drip blood-drip-3"></div>
+<div class="blood-drip blood-drip-4"></div>
+
+<div class="sidebar" onclick="toggleSidebar()">
+    ☰ Menu
+</div>
+
+<div class="sidebar-content" id="sidebarContent">
+    <a href="../source/jodoh.html">Cek Jodoh</a>
+    <a href="../source/tolol.html">Cek Tolol</a>
+    <a href="../index.html">Beranda</a>
+</div>
+
+<div class="container">
+    <h1>Cek Khodam Anda</h1>
+    <input type="text" id="nameInput" placeholder="Masukkan nama Anda">
+    <button onclick="cekKhodam()">Cek Khodam</button>
+
+    <div id="mysticAlert" class="alert">Nama tidak boleh kosong!</div>
+
+    <div id="loader" class="loader">Memeriksa...</div>
+
+    <div id="result" class="result">
+        <h2>Khodam Anda</h2>
+        <p id="khodamName"></p>
+        <p id="khodamMeaning"></p>
+    </div>
+</div>
+
+<footer>
+    &copy; Muhamad Galang Priatama
+</footer>
+
+<script src="../textkhodam.js"></script>
+<script>
+    function toggleSidebar() {
+        const sidebarContent = document.getElementById('sidebarContent');
+        sidebarContent.style.display = sidebarContent.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function cekKhodam() {
+        const name = document.getElementById('nameInput').value.trim();
+
+        if (name === "") {
+            document.getElementById('mysticAlert').style.display = 'block';
+            return;
+        }
+
+        document.getElementById('mysticAlert').style.display = 'none';
+        document.getElementById('loader').style.display = 'block';
+
+        setTimeout(() => {
+            const khodam = khodams[Math.floor(Math.random() * khodams.length)];
+            document.getElementById('khodamName').innerText = khodam.name;
+            document.getElementById('khodamMeaning').innerText = khodam.meaning;
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('loader').style.display = 'none';
+        }, 2000);
+    }
+</script>
+
+</body>
+</html>

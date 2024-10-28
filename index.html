@@ -1,0 +1,229 @@
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempat Gabut</title>
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Resetting margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Body styling */
+        body {
+            background: #000;
+            color: #fff;
+            font-size: 16px;
+            min-height: 100vh;
+            overflow-y: scroll;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Background image styling with blur effect */
+        .background-blur {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://telegra.ph/file/3363dc11e63c1d775d168.jpg') no-repeat center center;
+            background-size: cover;
+            filter: blur(30px);
+            z-index: -1;
+        }
+
+        /* Container styling */
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            margin: 40px auto;
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            animation: transform-appear 1s ease forwards;
+        }
+
+        /* Image container */
+        .image-container {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            width: 100%;
+            display: block;
+            border-radius: 15px;
+        }
+
+        /* Text styling */
+        h2 {
+            margin: 20px 0 10px;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        /* Icon link styling */
+        .icon-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .icon:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .icon .icon-inner {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            color: #fff;
+        }
+
+        .icon a {
+            flex-grow: 1;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            text-align: center;
+            transition: background 0.3s, color 0.3s;
+            margin-left: 10px;
+        }
+
+        .icon a:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Keyframes for transform animation */
+        @keyframes transform-appear {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Media query for larger screens */
+        @media (min-width: 768px) {
+            .container {
+                padding: 40px;
+                max-width: 450px;
+            }
+
+            .icon a {
+                padding: 12px;
+            }
+        }
+
+        /* Adjusting for very small screens */
+        @media (max-width: 400px) {
+            body {
+                font-size: 14px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .icon a {
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background blur effect -->
+    <div class="background-blur"></div>
+
+    <!-- Main container -->
+    <div class="container">
+        <div class="image-container">
+            <img src="https://telegra.ph/file/18177bf6d32939355f065.jpg" alt="Product Image">
+        </div>
+        <h2>Tempat Gabut</h2>
+        <p>CEK KHODAM, CEK KETOLOLAN, CEK JODOH?SEMUA ADA DISNI @GALANG</p>
+        <div class="icon-links">
+            <div class="icon" onclick="playClickSound()">
+                <div class="icon-inner">
+                    <i class="fas fa-search"></i>
+                </div>
+                <a href="source/khodam.html" onmouseover="playHoverSound()">Cek Khodam</a>
+            </div>
+            <div class="icon" onclick="playClickSound()">
+                <div class="icon-inner">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <a href="source/jodoh.html" onmouseover="playHoverSound()">Cek Jodoh</a>
+            </div>
+            <div class="icon" onclick="playClickSound()">
+                <div class="icon-inner">
+                    <i class="fas fa-user"></i>
+                </div>
+                <a href="source/tolol.html" onmouseover="playHoverSound()">Cek Tolol</a>
+            </div>
+            
+            <!-- New Join Group Button -->
+            
+        </div>
+    </div>
+
+    <!-- JavaScript to handle sound effects -->
+    <script>
+        // Sound effect on hover
+        function playHoverSound() {
+            const hoverSound = new Audio('gta-sound.mp3');
+            hoverSound.play();
+        }
+
+        // Sound effect on click
+        function playClickSound() {
+            const clickSound = new Audio('gta-sound.mp3');
+            clickSound.play();
+        }
+    </script>
+
+
+
+</body><chatgpt-sidebar data-gpts-theme="light"></chatgpt-sidebar><chatgpt-sidebar-popups data-gpts-theme="light"></chatgpt-sidebar-popups></html>
